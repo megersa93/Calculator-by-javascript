@@ -1,0 +1,275 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.calculator-container {
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+}
+
+.calculator {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    width: 320px;
+}
+
+.display {
+    background: #1a1a1a;
+    border-radius: 15px;
+    padding: 2rem 1.5rem;
+    margin-bottom: 1.5rem;
+    text-align: right;
+    min-height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.previous-operand {
+    color: #888;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    min-height: 1.5rem;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+.current-operand {
+    color: white;
+    font-size: 2.5rem;
+    font-weight: 300;
+    min-height: 3rem;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+}
+
+.btn {
+    border: none;
+    border-radius: 15px;
+    font-size: 1.3rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+}
+
+.btn:active {
+    transform: scale(0.95);
+}
+
+.btn-number {
+    background: #f8f9fa;
+    color: #333;
+}
+
+.btn-number:hover {
+    background: #e9ecef;
+}
+
+.btn-operator {
+    background: #667eea;
+    color: white;
+}
+
+.btn-operator:hover {
+    background: #5a6fd8;
+}
+
+.btn-operator.active {
+    background: #4c63d2;
+    transform: scale(0.95);
+}
+
+.btn-equals {
+    background: #28a745;
+    color: white;
+}
+
+.btn-equals:hover {
+    background: #218838;
+}
+
+.btn-clear {
+    background: #dc3545;
+    color: white;
+}
+
+.btn-clear:hover {
+    background: #c82333;
+}
+
+.btn-delete {
+    background: #ffc107;
+    color: #333;
+}
+
+.btn-delete:hover {
+    background: #e0a800;
+}
+
+.btn-zero {
+    grid-column: span 2;
+}
+
+.history {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 1.5rem;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    width: 280px;
+    max-height: 500px;
+    display: flex;
+    flex-direction: column;
+}
+
+.history-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #e9ecef;
+}
+
+.history-header h3 {
+    color: #333;
+    font-size: 1.2rem;
+}
+
+.clear-history {
+    background: #dc3545;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background 0.2s ease;
+}
+
+.clear-history:hover {
+    background: #c82333;
+}
+
+.history-list {
+    flex: 1;
+    overflow-y: auto;
+    max-height: 400px;
+}
+
+.history-empty {
+    text-align: center;
+    color: #888;
+    font-style: italic;
+    padding: 2rem 0;
+}
+
+.history-item {
+    padding: 1rem;
+    margin-bottom: 0.5rem;
+    background: #f8f9fa;
+    border-radius: 10px;
+    border-left: 4px solid #667eea;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.history-item:hover {
+    background: #e9ecef;
+    transform: translateX(5px);
+}
+
+.history-calculation {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 0.25rem;
+}
+
+.history-result {
+    color: #333;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.history-time {
+    color: #888;
+    font-size: 0.8rem;
+    margin-top: 0.25rem;
+}
+
+/* Custom scrollbar */
+.history-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.history-list::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 3px;
+}
+
+.history-list::-webkit-scrollbar-thumb {
+    background: #667eea;
+    border-radius: 3px;
+}
+
+.history-list::-webkit-scrollbar-thumb:hover {
+    background: #5a6fd8;
+}
+
+@media (max-width: 768px) {
+    .calculator-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .calculator {
+        width: 100%;
+        max-width: 320px;
+    }
+
+    .history {
+        width: 100%;
+        max-width: 320px;
+        max-height: 300px;
+    }
+
+    .current-operand {
+        font-size: 2rem;
+    }
+
+    .btn {
+        height: 50px;
+        font-size: 1.1rem;
+    }
+}
